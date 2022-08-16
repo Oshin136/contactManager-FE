@@ -1,9 +1,13 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import PageRoutes from "./pageRoutes/pageRoutes";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  return <h1>Hello</h1>;
+  return (
+    <BrowserRouter>
+      <PageRoutes />
+    </BrowserRouter>
+  );
 }
 
 export default App;
