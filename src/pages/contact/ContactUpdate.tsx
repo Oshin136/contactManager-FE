@@ -1,10 +1,10 @@
-import ContactForm from "../../forms/contactForm";
-import "../../forms/form.css";
+import "../../components/forms/form.css";
 import { Typography } from "antd";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Contact } from "../../interfaces/contact";
+import ContactForm from "../../components/forms/contactForm";
 
 function ContactUpdate() {
   const { id } = useParams();

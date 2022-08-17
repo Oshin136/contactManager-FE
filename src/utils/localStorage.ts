@@ -1,30 +1,36 @@
 import { LocalStorageKeys } from "../enums/localStorageKeys";
 
-
 export const addUserLoginToLocalStorage = (
   isLoggedIn: string,
   accessToken: string,
   userId: string
 ) => {
-  localStorage.setItem(LocalStorageKeys.IS_LOGGED_IN, isLoggedIn);
+  localStorage.setItem(LocalStorageKeys.isLoggedIn, isLoggedIn);
   localStorage.setItem(LocalStorageKeys.accessToken, accessToken);
   localStorage.setItem(LocalStorageKeys.userId, userId);
 };
 
+export const clearUserLoginFromLocalStorage = () => {
+  localStorage.removeItem(LocalStorageKeys.isLoggedIn);
+  localStorage.removeItem(LocalStorageKeys.accessToken);
+  localStorage.removeItem(LocalStorageKeys.userId);
+};
 
-export const getUserTokensFromLocalStorage = () => {
+export const getUserLoginFromLocalStorage = () => {
+  const isLoggedIn =
+    localStorage.getItem(LocalStorageKeys.isLoggedIn) === "true" ? true : false;
+  const accessToken = localStorage.getItem(LocalStorageKeys.accessToken);
+  const userId = localStorage.getItem(LocalStorageKeys.userId);
+
   return {
-    accessToken: localStorage.getItem(LocalStorageKeys.accessToken),
+    isLoggedIn,
+    accessToken,
+    userId,
   };
 };
 
-export const getUserIdFromLocalStorage = () => {
-  return localStorage.getItem(LocalStorageKeys.userId);
-};
-
-
-export const getUserLoginFromLocalStorage = (): boolean => {
-  const loggedInStatus = localStorage.getItem(LocalStorageKeys.IS_LOGGED_IN);
+export const isUserLoggedIn = (): boolean => {
+  const loggedInStatus = localStorage.getItem(LocalStorageKeys.isLoggedIn);
   if (loggedInStatus === null) {
     return false;
   } else {
@@ -34,10 +40,4 @@ export const getUserLoginFromLocalStorage = (): boolean => {
       return false;
     }
   }
-};
-
-
-export const clearUserLoginFromLocalStorage = () => {
-  localStorage.removeItem(LocalStorageKeys.IS_LOGGED_IN);
-  localStorage.removeItem(LocalStorageKeys.accessToken);
 };

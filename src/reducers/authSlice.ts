@@ -15,4 +15,4 @@ export const authSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { setIsUserLoggedIn } = authSlice.actions;
 
-export default authSlice.reducer;
+export const authReducer = authSlice.reducer;

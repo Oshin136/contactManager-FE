@@ -1,12 +1,12 @@
 import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../interfaces/login";
+import { login } from "../../interfaces/login";
 import axios from "axios";
 import "./form.css";
-import { BASE_URL } from "../constants/common";
-import { addUserLoginToLocalStorage } from "../utils/localStorage";
-import { setIsUserLoggedIn } from "../reducers/authSlice";
+import { BASE_URL } from "../../constants/common";
+import { addUserLoginToLocalStorage } from "../../utils/localStorage";
+import { setIsUserLoggedIn } from "../../reducers/authSlice";
 
 const LoginForm = (props: { onSuccessfullLogin: () => void }) => {
   const navigate = useNavigate();
@@ -30,10 +30,12 @@ const LoginForm = (props: { onSuccessfullLogin: () => void }) => {
       const data = res.data.data;
       if (data) {
         addUserLoginToLocalStorage("true", data.accessToken, data.userId);
+        dispatch(setIsUserLoggedIn(true));
         props.onSuccessfullLogin();
+        navigate("/contacts");
+      } else {
+        window.location.reload();
       }
-      dispatch(setIsUserLoggedIn(true));
-      navigate("/contact-list");
     } catch (err) {
       console.log(err);
     }

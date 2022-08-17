@@ -2,8 +2,8 @@ import { Button, Form, Input } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { register } from "../interfaces/register";
-import { BASE_URL } from "../constants/common";
+import { register } from "../../interfaces/register";
+import { BASE_URL } from "../../constants/common";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -24,12 +24,7 @@ const RegisterForm = () => {
     };
 
     try {
-      await axios({
-        method: "post",
-        url: BASE_URL + "/register",
-        data: userData,
-      });
-
+      await axios.post("/register", userData);
       navigate("/login");
     } catch (err) {
       console.log(err);

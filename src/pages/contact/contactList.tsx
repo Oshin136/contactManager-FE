@@ -95,7 +95,7 @@ const ContactList = () => {
       <Button
         type="primary"
         htmlType="submit"
-        onClick={() => navigate("/add-contact")}
+        onClick={() => navigate("/contacts/add")}
       >
         Add
       </Button>

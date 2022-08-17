@@ -1,9 +1,8 @@
-import LoginForm from "../../forms/loginForm";
-
-import "../../forms/form.css";
+import "../../components/forms/form.css";
 import { Typography } from "antd";
 import axios from "axios";
 import { initializeInterceptors } from "../../utils/interceptor";
+import LoginForm from "../../components/forms/loginForm";
 function Login(props: { interceptorId: number }) {
   const { Title } = Typography;
 

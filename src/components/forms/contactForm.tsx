@@ -6,10 +6,10 @@ import { ConfigProvider } from "antd-country-phone-input";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import en from "world_countries_lists/data/countries/en/world.json";
-import { Contact } from "../interfaces/contact";
 import axios from "axios";
-import { getUserLoginFromLocalStorage } from "../utils/localStorage";
+import { getUserLoginFromLocalStorage } from "../../utils/localStorage";
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
+import { Contact } from "../../interfaces/contact";
 
 interface contactFormInterface {
   update: boolean;

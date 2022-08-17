@@ -1,6 +1,6 @@
-import ContactForm from "../../forms/contactForm";
-import "../../forms/form.css";
+import "../../components/forms/form.css";
 import { Typography } from "antd";
+import ContactForm from "../../components/forms/contactForm";
 
 function Contact() {
   const { Title } = Typography;
