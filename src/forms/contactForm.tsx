@@ -13,7 +13,7 @@ const ContactForm = () => {
     wrapperCol: { span: 24 },
   };
   const navigate = useNavigate();
-  const [isFavourite, setIsFavourite] = useState<Boolean>(false);
+  // const [isFavourite, setIsFavourite] = useState<Boolean>(false);
 
   const onFinish = (values: any) => {
     navigate("/contact-list");
@@ -55,7 +55,7 @@ const ContactForm = () => {
           <Checkbox.Group>
             <Checkbox
               value={true}
-              onChange={(e) => setIsFavourite(e.target.checked)}
+              // onChange={(e) => setIsFavourite(e.target.checked)}
             />
           </Checkbox.Group>
         </Form.Item>
