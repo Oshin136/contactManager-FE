@@ -1,7 +1,9 @@
 import { Button, Form, Input } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./form.css";
+import axios from "axios";
+import { register } from "../interfaces/register";
+import { BASE_URL } from "../constants/common";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -10,30 +12,48 @@ const RegisterForm = () => {
     labelCol: { span: 0 },
     wrapperCol: { span: 24 },
   };
-  const onFinish = (values: any) => {
-    if (values.password != values.confirmpassword) {
+  const onFinish = async (values: register) => {
+    if (values.password !== values.confirmpassword) {
       setErrMsg("Password do not match");
-    } else {
+      return;
+    }
+    const userData = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+
+    try {
+      await axios({
+        method: "post",
+        url: BASE_URL + "/register",
+        data: userData,
+      });
+
       navigate("/login");
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
-    <Form {...layout} onFinish={onFinish} onFinishFailed={onFinishFailed}>
+    <Form {...layout} onFinish={onFinish}>
       <Form.Item
-        name="fullname"
-        rules={[{ required: true, message: "Please input your fullname!" }]}
+        name="name"
+        rules={[{ required: true, message: "Please input your name!" }]}
       >
-        <Input placeholder="Full Name" />
+        <Input placeholder="Name" />
       </Form.Item>
 
       <Form.Item
         name="email"
-        rules={[{ required: true, message: "Please input your email!" }]}
+        rules={[
+          {
+            type: "email",
+            required: true,
+            message: "Please input your email!",
+          },
+        ]}
       >
         <Input placeholder="Email" />
       </Form.Item>
@@ -51,6 +71,7 @@ const RegisterForm = () => {
       >
         <Input.Password placeholder="Confirm Password" />
       </Form.Item>
+      <div style={{ color: "red", marginBottom: "15px" }}>{errMsg}</div>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
