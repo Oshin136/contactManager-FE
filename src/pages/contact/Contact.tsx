@@ -6,9 +6,11 @@ function Contact() {
   const { Title } = Typography;
   return (
     <div className="form">
-      <div className="form_wrapper">
-        <Title className="form_title">Add Contact</Title>
-        <ContactForm />
+      <div className="form_center">
+        <div className="form_wrapper">
+          <Title className="form_title">Add Contact</Title>
+          <ContactForm update={false} />
+        </div>
       </div>
     </div>
   );
