@@ -3,9 +3,13 @@
   flex-direction: column;
 }
 
+.form_center {
+  padding-top: 150px;
+}
+
 .form_wrapper {
   padding: 75px 60px;
-  background-color: lightblue;
+  background-color: #f0f8ff;
   box-shadow: 0 0 50px #8080809e;
   margin: 0px auto;
   width: 400px;
@@ -15,4 +19,5 @@
 
 .form .form_title {
   margin-bottom: 50px;
+  color: #333399;
 }

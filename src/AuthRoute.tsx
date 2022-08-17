@@ -1,8 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getUserLoginFromLocalStorage } from "./utils/localStorage";
+import {
+  getUserLoginFromLocalStorage,
+  isUserLoggedIn,
+} from "./utils/localStorage";
 
 const AuthRoute = () => {
-  const isLoggedIn = getUserLoginFromLocalStorage();
+  const isLoggedIn = isUserLoggedIn();
 
   return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
 };
