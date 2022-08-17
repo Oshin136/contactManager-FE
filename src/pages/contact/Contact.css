@@ -1,0 +1,38 @@
+.contactform_center {
+  padding-top: 100px;
+}
+
+.contactform_wrapper {
+  padding: 70px 60px;
+  background-color: #f0f8ff;
+  box-shadow: 0 0 20px #8080809e;
+  margin: 0px auto;
+  width: 400px;
+  justify-content: center;
+  align-items: middle;
+}
+
+.contactform_title {
+  margin-bottom: 50px;
+  color: #333399;
+}
+
+.contact_title {
+  margin-bottom: 50px;
+  color: #333399;
+  text-align: center;
+}
+
+.contactList_wrapper {
+  padding: 30px;
+}
+
+.btn_edit {
+  color: green;
+  border: 1px solid green;
+}
+
+.btn_delete {
+  color: red;
+  border: 1px solid red;
+}

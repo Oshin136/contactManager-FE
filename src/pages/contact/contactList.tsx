@@ -1,17 +1,13 @@
 import { Button, Space, Table, Typography } from "antd";
-import Item from "antd/lib/list/Item";
 import { ColumnsType } from "antd/lib/table";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { Contact } from "../../interfaces/contact";
 import { getUserLoginFromLocalStorage } from "../../utils/localStorage";
-import "./contactList.css";
+import "./Contact.css";
 
-const { Column } = Table;
 const ContactList = () => {
-  const navigate = useNavigate();
   const { Title } = Typography;
   const { userId } = getUserLoginFromLocalStorage();
   const [data, setData] = useState<Contact[]>([]);
@@ -31,7 +27,15 @@ const ContactList = () => {
       dataIndex: "photo",
       key: "photo",
       render: (url) => (
-        <img style={{ width: "80px", height: "80px" }} src={url} />
+        <img
+          style={{
+            width: "80px",
+            height: "80px",
+            borderRadius: "50%",
+            border: "1px solid #1e90ff",
+          }}
+          src={url}
+        />
       ),
     },
     {
@@ -66,15 +70,18 @@ const ContactList = () => {
       render: (_, record) => (
         <Space size="middle">
           <Link to={`/contacts/update-contact/${record.id}`}>
-            <Button>Edit</Button>
+            <Button className="btn_edit">Edit</Button>
           </Link>
-          <Button onClick={() => deleteHandler(record.id)}>Delete</Button>
+          <Button
+            className="btn_delete"
+            onClick={() => deleteHandler(record.id)}
+          >
+            Delete
+          </Button>
         </Space>
       ),
     },
   ];
-
-  //   const id = useSelector((state: RootState) => state.userCheck.id);
 
   useEffect(() => {
     axios
@@ -92,13 +99,6 @@ const ContactList = () => {
   return (
     <div className="contactList_wrapper">
       <Title className="contact_title">Your Contacts</Title>
-      <Button
-        type="primary"
-        htmlType="submit"
-        onClick={() => navigate("/contacts/add")}
-      >
-        Add
-      </Button>
       <Table dataSource={data} pagination={false} columns={columns} />
     </div>
   );

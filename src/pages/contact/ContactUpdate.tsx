@@ -1,4 +1,3 @@
-import "../../components/forms/form.css";
 import { Typography } from "antd";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -30,12 +29,10 @@ function ContactUpdate() {
   }, []);
 
   return data ? (
-    <div className="form">
-      <div className="form_center">
-        <div className="form_wrapper">
-          <Title className="form_title">Update Contact</Title>
-          <ContactForm update={true} oldData={data} />
-        </div>
+    <div className="contactform_center">
+      <div className="contactform_wrapper">
+        <Title className="contactform_title">Update Contact</Title>
+        <ContactForm update={true} oldData={data} />
       </div>
     </div>
   ) : (

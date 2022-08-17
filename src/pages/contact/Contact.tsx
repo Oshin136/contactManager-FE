@@ -1,16 +1,14 @@
-import "../../components/forms/form.css";
 import { Typography } from "antd";
 import ContactForm from "../../components/forms/contactForm";
+import "./Contact.css";
 
 function Contact() {
   const { Title } = Typography;
   return (
-    <div className="form">
-      <div className="form_center">
-        <div className="form_wrapper">
-          <Title className="form_title">Add Contact</Title>
-          <ContactForm update={false} />
-        </div>
+    <div className="contactform_center">
+      <div className="contactform_wrapper">
+        <Title className="contactform_title">Add Contact</Title>
+        <ContactForm update={false} />
       </div>
     </div>
   );
