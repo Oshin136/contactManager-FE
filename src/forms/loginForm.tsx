@@ -8,7 +8,7 @@ import { BASE_URL } from "../constants/common";
 import { addUserLoginToLocalStorage } from "../utils/localStorage";
 import { setIsUserLoggedIn } from "../reducers/authSlice";
 
-const LoginForm = () => {
+const LoginForm = (props: { onSuccessfullLogin: () => void }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const layout = {
@@ -30,6 +30,7 @@ const LoginForm = () => {
       const data = res.data.data;
       if (data) {
         addUserLoginToLocalStorage("true", data.accessToken, data.userId);
+        props.onSuccessfullLogin();
       }
       dispatch(setIsUserLoggedIn(true));
       navigate("/contact-list");

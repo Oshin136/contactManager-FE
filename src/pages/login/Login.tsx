@@ -2,13 +2,24 @@ import LoginForm from "../../forms/loginForm";
 
 import "../../forms/form.css";
 import { Typography } from "antd";
-function Login() {
+import axios from "axios";
+import { initializeInterceptors } from "../../utils/interceptor";
+function Login(props: { interceptorId: number }) {
   const { Title } = Typography;
+
+  const onSuccessfullLogin: () => void = () => {
+    axios.interceptors.request.eject(props.interceptorId);
+    initializeInterceptors();
+  };
+
   return (
     <div className="form">
-      <div className="form_wrapper">
-        <Title className="form_title">Log In</Title>
-        <LoginForm />
+      <div className="form_center">
+        <div className="form_wrapper">
+          <Title className="form_title">Log In</Title>
+          <LoginForm onSuccessfullLogin={onSuccessfullLogin} />
+          Or <a href="/register"> Create an account</a>
+        </div>
       </div>
     </div>
   );
