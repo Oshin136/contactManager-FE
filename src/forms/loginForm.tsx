@@ -1,15 +1,41 @@
 import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../interfaces/login";
+import axios from "axios";
 import "./form.css";
+import { BASE_URL } from "../constants/common";
+import { addUserLoginToLocalStorage } from "../utils/localStorage";
+import { setIsUserLoggedIn } from "../reducers/authSlice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const layout = {
     labelCol: { span: 0 },
     wrapperCol: { span: 24 },
   };
-  const onFinish = (values: any) => {
-    navigate("/login");
+  const onFinish = async (values: login) => {
+    const loginData = {
+      email: values.email,
+      password: values.password,
+    };
+
+    try {
+      const res = await axios({
+        method: "post",
+        url: BASE_URL + "/login",
+        data: loginData,
+      });
+      const data = res.data.data;
+      if (data) {
+        addUserLoginToLocalStorage("true", data.accessToken, data.userId);
+      }
+      dispatch(setIsUserLoggedIn(true));
+      navigate("/contact-list");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {
